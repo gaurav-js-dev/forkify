@@ -9,14 +9,13 @@ Forkify requires Node.js to run its dependencies.
 
 Install the dependencies and devDependencies and start the server.
 
-$ npm install
 
 Usage
 # Install dependencies
 npm install
 
-# Run webpack on development mode
-npm start
+# Run webpack on development mode creating live server
+npm run start
 
 # Run build for production
 npm run build
