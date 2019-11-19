@@ -33,10 +33,10 @@ const createIngredient = ingredient => `
 <svg class="recipe__icon">
     <use href="img/icons.svg#icon-check"></use>
 </svg>
-<div class="recipe__count">${formatCount(ingredient.count)}</div>
+<div class="recipe__count">${formatCount(ingredient.amount)}</div>
 <div class="recipe__ingredient">
-    <span class="recipe__unit">${ingredient.unit}</span>
-    ${ingredient.ingredient}
+    <span class="recipe__unit">${ingredient.measures.metric.unitShort}</span>
+    ${ingredient.name}
 </div>
 </li>
 `;
@@ -127,6 +127,7 @@ export const updateServingsIngredients = recipe=>{
     // update ingredients
     const countElements = Array.from(document.querySelectorAll(".recipe__count"));
     countElements.forEach((el,i)=>{
-        el.textContent = formatCount(recipe.ingredients[i].count);
+        el.textContent = recipe.ingredients[i].amount;
+        
     });
 };

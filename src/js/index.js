@@ -15,7 +15,7 @@ import { elements, renderLoader, clearLoader } from "./views/base";
   - Liked Recipes
 */
 const state = {};
-
+window.s = state;
 /*SEARCH CONTROLLER
 
 */
@@ -94,7 +94,6 @@ const controlRecipe = async () => {
       // Get recipe data and parse ingredients
       await state.recipe.getRecipe();
       // console.log(state.recipe.ingredients);
-      state.recipe.parseIngredients();
       // calculate servings and time  
       state.recipe.calcTime();
       state.recipe.calcServings();
@@ -121,9 +120,10 @@ const controlList = () => {
   //Create a new list if there is no list yet 
   if (!state.list) state.list = new List();
 
-  //Add Each ingredient to the list and render it to UI
+  //Add Each ingredient to the list and renderItem it to UI
   state.recipe.ingredients.forEach(el => {
-    const item = state.list.addItem(el.count, el.unit, el.ingredient);
+    const item = state.list.addItem(el.amount, el.unit, el.name);
+    console.log(item);
     listView.renderItem(item);
 
   });

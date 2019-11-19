@@ -318,7 +318,7 @@ body {
       top: 0;
       left: 0;
       background-image: linear-gradient(to right bottom, #FBDB89, #F48982);
-      opacity: .6; }
+      opacity: .1; }
   .recipe__img {
     width: 100%;
     display: block;

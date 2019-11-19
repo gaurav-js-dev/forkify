@@ -11,14 +11,14 @@ export const clearResults = () => {
 }
 
 export const highlightSelected = id => {
-    const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+    const resultsArr = document.querySelectorAll('.results__link');
     resultsArr.forEach(el => {
         el.classList.remove('results__link--active');
     });
-    document.querySelector(`.results__link[href*="${id}"]`).classList.add('results__link--active');
+    document.querySelector(`.results__link[href*="${id}"], .likes__link`).classList.add('results__link--active');
 };
 
-export const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit = 23) => {
     const newTitle = [];
     if (title.length > limit) {
         title.split(" ").reduce((acc, cur) => {
@@ -37,21 +37,21 @@ export const limitRecipeTitle = (title, limit = 17) => {
 // Render recipe title on left pane of page in search results
 
 const renderRecipe = recipe => {
-    const markup = `
-        <li> 
-            <a class="results__link" href="#${recipe.recipe_id}">
-                <figure class="results__fig">
-                    <img src="${recipe.image_url}" alt="${limitRecipeTitle(recipe.title, 17)}">
-                </figure>
-                <div class="results__data">
-                    <h4 class="results__name">${limitRecipeTitle(recipe.title)}</h4>
-                    <p class="results__author">${recipe.publisher}</p>
-                </div>
-            </a> 
-        </li>
-    `;
-    elements.searchResList.insertAdjacentHTML('beforeend', markup);
-};
+    const markUp = `                
+    <li>
+    <a class="results__link" href="#${recipe.id}">
+        <figure class="results__fig">
+            <img src="https://spoonacular.com/recipeImages/${recipe.image}" alt="${recipe.title}">
+            <p class="results__author">The Pioneer Woman</p>
+        </figure> 
+        <div class="results__data">
+            <h4 class="results__name">${limitRecipeTitle(recipe.title)}</h4>
+            <p class="likes__author">The Pioneer Woman</p>
+        </div>
+    </a>
+   </li>`;
+    elements.searchResList.insertAdjacentHTML("beforeend", markUp);
+}
 
 // HTML To create button
 const createButton = (page, type) => `
